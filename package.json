@@ -1,0 +1,14 @@
+{
+  "name": "docker-acarsdecoder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fred Clausen",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@airframes/acars-decoder": "^1.6.19"
+  }
+}

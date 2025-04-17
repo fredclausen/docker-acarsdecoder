@@ -1,0 +1,9 @@
+services:
+  acars-decoder:
+    image: ghcr.io/fredclausen/docker-acarsdecoder:latest
+    tty: false
+    container_name: acars-decoder
+    restart: always
+    environment:
+      - PORT=3000
+      - LOG_LEVEL=info

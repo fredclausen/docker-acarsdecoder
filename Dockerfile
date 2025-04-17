@@ -15,6 +15,6 @@ USER node
 RUN npm install
 
 ENV \
-  LOGLEVEL=info \
+  LOG_LEVEL=info \
   PORT=3000
-CMD [ "npm", "run", "start_docker"]
+CMD [ "npm", "run", "start"]

@@ -7,18 +7,7 @@ on:
       reason:
         required: true
         description: "Reason for running this workflow"
-  push:
-    branches:
-      - main
-    # Don't trigger if it's just a documentation update
-    paths:
-      - "rust/**"
-      - "Dockerfile**"
-      - "rootfs/**"
 
-# Set workflow-wide environment variables
-#  - REPO: repo name on dockerhub
-#  - IMAGE: image name on dockerhub
 env:
   GHCR_IMAGE: ${{ github.repository }}
   GHCR_REGISTRY: ghcr.io
@@ -59,11 +48,9 @@ jobs:
       ghcr_repo_owner: ${{ github.repository_owner }}
       ghcr_repo: ${{ github.repository }}
       platform_linux_arm32v6_enabled: false
-      platform_linux_arm64v8_enabled: false
-      platform_linux_arm32v7_enabled: false
+      platform_linux_arm64v8_enabled: true
+      platform_linux_arm32v7_enabled: true
       platform_linux_i386_enabled: false
-      get_version_method: file_in_container:file=/CONTAINER_VERSION
-      # set build_latest to true if github.event.inputs.use_test_image is false
       build_latest: true
       build_baseimage_test: false
       # only build the entire stack if we are not using the test image

@@ -1,10 +1,20 @@
-FROM node:23.11.0-bookwork
+FROM node:23.11.0-bookworm-slim
 
-ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# hadolint ignore=DL3008,DL3003,SC1091
+#RUN apt-get update && \
+#    apt-get install -y --no-install-recommends openssl && \
+#    rm -rf /var/lib/apt/lists/*
 
-COPY rootfs/ /
+WORKDIR /home/node/app
 
-RUN set -x && \
+COPY package*.json ./
+COPY --chown=node:node . .
+USER node
+RUN npm install
 
+ENV \
+  LOGLEVEL=info \
+  PORT=3000
+CMD [ "npm", "run", "start_docker"]

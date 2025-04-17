@@ -21,8 +21,8 @@ let alignColorsAndTime = winston.format.combine(
   }),
   winston.format.printf(
     (info) =>
-      `${info.label}[${info.timestamp}][${info.service}][${info.level}] ${info.message}`,
-  ),
+      `${info.label}[${info.timestamp}][${info.service}][${info.level}] ${info.message}`
+  )
 );
 
 // Create the logger
@@ -32,7 +32,7 @@ const logger = winston.createLogger({
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize(),
-        alignColorsAndTime,
+        alignColorsAndTime
       ),
     }),
   ],
@@ -52,7 +52,7 @@ if (process.env.LOG_LEVEL !== undefined) {
   // but verify it's a valid log level
   if (
     ["error", "warn", "info", "http", "verbose", "debug", "silly"].includes(
-      process.env.LOG_LEVEL,
+      process.env.LOG_LEVEL
     )
   ) {
     logger.level = process.env.LOG_LEVEL;

@@ -36,7 +36,7 @@ const logger = winston.createLogger({
       ),
     }),
   ],
-  defaultMeta: { service: "SDR Image API" },
+  defaultMeta: { service: "Logger Setup" },
 });
 
 /**
@@ -60,14 +60,14 @@ if (process.env.LOG_LEVEL !== undefined) {
     logger.level = process.env.LOG_LEVEL;
   } else {
     logger.error("Invalid log level set. Defaulting to info", {
-      service: "SDR Image API",
+      service: "Logger Setup",
     });
     logger.level = "info";
   }
 } else {
   logger.level = "info";
   logger.info("No log level set. Defaulting to info", {
-    service: "SDR Image API",
+    service: "Logger Setup",
   });
 }
 
@@ -90,14 +90,14 @@ app.post("/decode", (req, res) => {
   req.on("end", () => {
     try {
       logger.debug(`Decoding message: ${data}`, {
-        service: "SDR Image API",
+        service: "Decoder",
       });
       let data_json = JSON.parse(data);
       const decoded = decoder.decode(data_json);
       res.json(decoded);
     } catch (err) {
       logger.error(`Error decoding message\nERROR: ${err}\nMessage: ${data}`, {
-        service: "SDR Image API",
+        service: "Decoder",
       });
       res.status(400).json({
         error: "Error decoding message",

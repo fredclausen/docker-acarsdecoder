@@ -10,7 +10,7 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "@airframes/acars-decoder": "^1.8.6",
+    "@airframes/acars-decoder": "^1.8.14",
     "express": "^5.2.1",
     "winston": "^3.19.0"
   }
